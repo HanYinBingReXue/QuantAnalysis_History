@@ -90,7 +90,7 @@ def get_history_data():
     _from = from_time_unix ;# int | Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified (optional)
     to = to_time_unix; # int | End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time (optional)
     api_response = abi_instance.list_futures_candlesticks(settle, contract, _from=_from, to=to, interval=bar_interval);
-    #pprint(type(api_response))
+    pprint(api_response)
     for each in api_response:
         history_close_price.append(each._c);
         history_high_price.append(each._h);

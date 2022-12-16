@@ -1,8 +1,25 @@
 import pandas as pd
+import numpy as np
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+import pandas as pd;
+from datetime import datetime
+from pprint import pprint
+import os
 
-def normalized(Price):
-    Price = (Price - Price.min()) / (Price.max() - Price.min());
+
+
+
+def normalized(Price): #归一到 【0 1】
+    Price = (Price - min(Price)) / (max(Price) - min(Price));
     return Price
+
+def normalized_minus1_to_1(Price):
+    Price = Price - np.mean(Price);
+    Price = Price / np.max(np.abs(Price))
+    return Price;
+
+
 
 def add_missing_date(_from,to,df):
     date_range = pd.date_range(start = _from, end = to);
@@ -20,10 +37,10 @@ def moving_average(data, n):
         moving_average_values.append(sum(data[i:i+n]) / n)
     return moving_average_values
 #斜率计算
-def slope_cal(normalized_date, MA_data, MA_NUM):
+def slope_cal(date, MA_data, MA_NUM):
     slope = []
-    for n in range(0, len(MA_data)):
-        slope.append(normalized_date[n + MA_NUM - 1] - MA_data[n]);
+    for n in range(0, len(MA_data) -1):
+        slope.append(date[n + MA_NUM] - MA_data[n]);
     return slope;
 
 def step_normalized(df):
