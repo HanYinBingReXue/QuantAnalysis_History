@@ -23,16 +23,17 @@ for i in range(0,len(contract_list)):
     datasheet_path_5m_list.append(contract_path + "/" + contract_list[i] + "_5m.csv");
     datasheet_path_15m_list.append(contract_path + "/" + contract_list[i] + "_15m.csv");
 # pprint(datasheet_path_1h_list)
-datasheet = datasheet_path_15m_list
+datasheet = datasheet_path_4h_list
 
 profit_loss_ratio_list = [];
 for i in range(0,len(datasheet)):
-        contract = (((datasheet[i].split("/"))[-1].split("."))[0].split("_"))[0];
-        contract_list.append(contract);
-        bar_interval = (((datasheet[i].split("/"))[-1].split("."))[0].split("_"))[1]
-        raw_eth_price_data = pd.read_csv(datasheet[i], index_col = 0);
-        profit_loss_ratio = stratagy_test(raw_eth_price_data,2,0);
-        profit_loss_ratio_list.append(profit_loss_ratio)
+    print(i,"/",len(datasheet))
+    contract = (((datasheet[i].split("/"))[-1].split("."))[0].split("_"))[0];
+    contract_list.append(contract);
+    bar_interval = (((datasheet[i].split("/"))[-1].split("."))[0].split("_"))[1]
+    raw_eth_price_data = pd.read_csv(datasheet[i], index_col = 0);
+    profit_loss_ratio = stratagy_test(raw_eth_price_data,2,0);
+    profit_loss_ratio_list.append(profit_loss_ratio)
 
 fig = go.Figure()
 index = contract_list;

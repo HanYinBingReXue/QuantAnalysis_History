@@ -47,7 +47,7 @@ def get_history_data(from_time_unix,to_time_unix,contract,settle,bar_interval):
     
     if(total_require_number >= MAX_Storage_Num):
         print("数据量过大！")
-        from_time_unix = to_time_unix - (MAX_Storage_Num * bar_interval_value_unix);
+        from_time_unix = to_time_unix - (MAX_Storage_Num * Max_Bar_Num * bar_interval_value_unix);
         total_require_number = MAX_Storage_Num;
         for i in range(0,int(total_require_number)):
             print("%s / %s" %(i , total_require_number))

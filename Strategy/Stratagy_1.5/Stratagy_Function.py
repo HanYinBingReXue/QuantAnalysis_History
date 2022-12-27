@@ -11,7 +11,7 @@ import plotly.express as px
 from typing import Optional
 import matplotlib.pyplot as plt
 from scipy import signal
-
+from sklearn import svm,preprocessing
 from statsmodels.graphics.tsaplots import plot_acf
 def normalized(Price): #归一到 【0 1】
     Price = (Price - min(Price)) / (max(Price) - min(Price));
@@ -531,3 +531,5 @@ def bar_is_upward(df):
         return 1;
     else:
         return 0;
+
+

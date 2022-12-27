@@ -50,7 +50,7 @@ contract_list.append(contract);
 bar_interval = (((datasheet[contract_index].split("/"))[-1].split("."))[0].split("_"))[1]
 raw_eth_price_data = pd.read_csv(datasheet[contract_index], index_col = 0);
 profit_loss_ratio = stratagy_test(raw_eth_price_data,2,1);
-# profit_loss_ratio_list.append(profit_loss_ratio)
+profit_loss_ratio_list.append(profit_loss_ratio)
 
 # fig = go.Figure()
 # index = contract_list;

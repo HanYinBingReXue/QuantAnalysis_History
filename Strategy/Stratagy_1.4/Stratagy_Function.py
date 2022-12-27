@@ -336,7 +336,7 @@ def stratagy_test(df,switch,imageflag): #本function时为了测试买卖时的�
                                                                  
     # 策略
     #-------------------------------------
-    # 策略回测
+
 
     if imageflag == 1:
         fig = make_subplots(rows=2, cols=1,shared_xaxes=True,
@@ -360,6 +360,7 @@ def stratagy_test(df,switch,imageflag): #本function时为了测试买卖时的�
                     name='MA_big'),row=1,col=1)
         # fig.show()
     transaction_store = pd.DataFrame(transaction_store,columns=["Transaction Time","Transaction Type","Transaction State","Transaction Price"])
+     # 策略回测
     if(imageflag):
         profit_loss_ratio = test_result(transaction_store,imageflag,fig);
     else:
@@ -488,22 +489,22 @@ def test_result(transaction_store,imageflag,fig):
                     name='profit_loss_ratio_show'),row=2,col=1)
 
 
-        for i in range(0,len(transaction_store)):
-            if transaction_store.iloc[i]["Transaction Type"] == "Long" or transaction_store.iloc[i]["Transaction Type"] == "Close Long":
-                arrowcolor = "red"
-                ay = 40
-            else:
-                arrowcolor = "green"
-                ay = -40
+        # for i in range(0,len(transaction_store)):
+        #     if transaction_store.iloc[i]["Transaction Type"] == "Long" or transaction_store.iloc[i]["Transaction Type"] == "Close Long":
+        #         arrowcolor = "red"
+        #         ay = 40
+        #     else:
+        #         arrowcolor = "green"
+        #         ay = -40
 
-            fig.add_annotation(x=transaction_store.iloc[i].name, y=transaction_store.iloc[i]["Transaction Price"],
-                        text=transaction_store.iloc[i]["Transaction Type"],
-                        arrowhead = 3,
-                        arrowsize = 2,
-                        arrowcolor= arrowcolor,
-                        showarrow=True,
-                        ay = ay,
-                        )
+        #     fig.add_annotation(x=transaction_store.iloc[i].name, y=transaction_store.iloc[i]["Transaction Price"],
+        #                 text=transaction_store.iloc[i]["Transaction Type"],
+        #                 arrowhead = 3,
+        #                 arrowsize = 2,
+        #                 arrowcolor= arrowcolor,
+        #                 showarrow=True,
+        #                 ay = ay,
+        #                 )
         fig.update_layout(
             # title='ETH Price from %s to %s'% ( from_time_str, to_time_str ),
             # remove rangeslider
